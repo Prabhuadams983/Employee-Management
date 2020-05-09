@@ -1,0 +1,11 @@
+.avatar{
+    width: 100px;
+    height: auto;
+}
+.spinner-border{
+    position: absolute;
+    top: 5%;
+    left: 35%;
+    width: 3rem!important;
+    height: 3rem!important;
+}

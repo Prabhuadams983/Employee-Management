@@ -1,0 +1,61 @@
+<div class="row">
+        <div class="col-md-2">
+            <div class="form-group text-center">
+                <div class="spinner-border" role="status" [hidden]="showSpinner">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div *ngIf="imgUrl!='';else avatarImg">
+                    <img [src]="imgUrl" class="avatar" [hidden]="showImage">
+                </div>
+                <ng-template #avatarImg>
+                    <img src="../../assets/imgs/emp-avatar.png" class="avatar" [hidden]="showImage">
+                </ng-template>
+                <div class="wrapper">
+                    <input type="file" class="form-control-file d-none" #fileInput (change)="selectFile($event)">
+                    <button type="button" class="btn btn-outline-primary btn-md px-4 py-1 mt-2" (click)="fileInput.click()">Upload</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <form class="employee-form" #form="ngForm" (submit)="addEmployee()">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" ngModel name="employeeName" #employeeName="ngModel" required maxlength="20" minlength="5" [class.is-invalid]="employeeName.invalid && employeeName.touched" autocomplete="off"/>
+                    <small class="text-danger" [class.d-none]="employeeName.valid || employeeName.untouched">Name is required</small>
+                </div>
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="text" class="form-control" ngModel name="email" #email="ngModel" required [class.is-invalid]="email.invalid && email.touched" autocomplete="off"/>
+                    <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required</small>
+                </div>
+                <div class="form-group">
+                    <label>Designation</label>
+                    <select class="form-control" name="designation" ngModel #designation="ngModel" required [class.is-invalid]="designation.invalid && designation.touched">
+                        <option value="">Select Designation</option>
+                        <option value="M">Manager</option>
+                        <option value="TL">Team Leader</option>
+                        <option value="SD">Senior Developer</option>
+                        <option value="JD">Junior Developer</option>
+                    </select>
+                        <small class="text-danger" [class.d-none]="designation.valid || designation.untouched">Please select designation</small>
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                   <select class="form-control" name="gender" ngModel #gender="ngModel" required [class.is-invalid]="gender.invalid && gender.touched">
+                       <option value="">Select Gender</option>
+                       <option value="M">Male</option>
+                       <option value="F">Female</option>
+                   </select>
+                   <small class="text-danger" [class.d-none]="gender.valid || gender.untouched">Please choose a gender</small>
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="text" class="form-control" name="age" placeholder="" required ngModel #age="ngModel" [class.is-invalid]="age.invalid && age.touched" autocomplete="off"/>
+                    <small class="text-danger" [class.d-none]="age.valid || age.untouched">Please enter age</small>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-md btn-outline-primary px-5 py-1">Add</button>
+                </div>
+                </form>
+        </div>
+</div>
